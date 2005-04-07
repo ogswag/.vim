@@ -197,7 +197,7 @@ endfunction
 call EnableTermGuicolorsIfSupported()
 
 let g:lumen_light_colorscheme='tokyonight-day'
-let g:lumen_dark_colorscheme='srcery'
+let g:lumen_dark_colorscheme='unokai'
 
 " ============================================================================
 " AUTOCOMMANDS & FORMATTING OPTIONS
