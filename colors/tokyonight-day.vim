@@ -13,8 +13,8 @@ set background=light
 
 " Color definitions
 let s:bg           = '#FEFFFE'
-let s:fg           = '#2B4B95'
-let s:fg_dark      = '#343b58'
+let s:fg           = '#151515'
+let s:fg_dark      = '#000000'
 let s:fg_gutter    = '#b0b4c3'
 let s:comment      = '#6172b0'
 
