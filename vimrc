@@ -24,16 +24,10 @@ Plug 'christoomey/vim-titlecase'
 Plug 'sheerun/vim-polyglot'
 
 " Sync themes with system style
-Plug 'vimpostor/vim-lumen'
+" Plug 'vimpostor/vim-lumen'
 
 " Highlight trailing whitespace
 Plug 'ntpeters/vim-better-whitespace'
-
-" Color schemes
-Plug 'ogswag/vim-envy'
-Plug 'nordtheme/vim'
-Plug 'srcery-colors/srcery-vim'
-Plug 'lifepillar/vim-solarized8'
 
 call plug#end()
 
@@ -159,6 +153,7 @@ set viminfo='200,<500,s32
 " ============================================================================
 
 augroup colorscheme_change | au!
+    au ColorScheme jellybeans hi Normal ctermbg=NONE guibg=NONE
     au ColorScheme habamax hi Normal ctermbg=NONE guibg=NONE
     au ColorScheme habamax hi Comment ctermfg=95 guifg=NONE
     au ColorScheme habamax hi SpellBad cterm=underline ctermfg=124 ctermbg=NONE guifg=#af0000 gui=underline guibg=NONE
@@ -196,8 +191,19 @@ endfunction
 
 call EnableTermGuicolorsIfSupported()
 
-let g:lumen_light_colorscheme='tokyonight-day'
-let g:lumen_dark_colorscheme='unokai'
+function! AutoThemeByTime() abort
+  let hour = str2nr(strftime('%H'))
+  if hour >= 8 && hour < 16
+    colorscheme tokyonight-day
+  else
+    colorscheme jellybeans
+  endif
+endfunction
+
+augroup AutoTheme
+  autocmd!
+  autocmd VimEnter * call AutoThemeByTime()
+augroup END
 
 " ============================================================================
 " AUTOCOMMANDS & FORMATTING OPTIONS
