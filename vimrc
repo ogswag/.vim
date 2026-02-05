@@ -11,6 +11,9 @@ endif
 " ---
 call plug#begin()
 
+" Lucius Theme
+Plug 'jonathanfilip/vim-lucius'
+
 " Fuzzy search and file opening
 Plug 'ctrlpvim/ctrlp.vim'
 
@@ -31,8 +34,42 @@ Plug 'ntpeters/vim-better-whitespace'
 
 call plug#end()
 
-let g:nord_italic = 0
-let g:nord_italic_comments = 0
+" ============================================================================
+" COLORSCHEME
+" ============================================================================
+function! EnableTermGuicolorsIfSupported()
+    if !has('termguicolors')
+        return
+    endif
+
+    if ($COLORTERM ==# 'truecolor' || $COLORTERM ==# '24bit') ||
+        \ ($TERM ==# 'xterm-kitty') ||
+        \ ($TERM_PROGRAM ==# 'WezTerm') ||
+        \ ($TERM_PROGRAM ==# 'vscode') ||
+        \ (exists('$VTE_VERSION') && $VTE_VERSION >= 3600)
+
+        if &term =~# '^screen' || &term =~# '^tmux'
+            let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+            let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+        endif
+
+        set termguicolors
+
+        return 1
+    endif
+
+    return 0
+endfunction
+
+call EnableTermGuicolorsIfSupported()
+
+if strftime("%H") >= 6 && strftime("%H") < 18
+  set background=light
+  colorscheme lucius
+else
+  set background=dark
+  colorscheme lucius
+endif
 
 " ============================================================================
 " GENERAL SETTINGS & BEHAVIOR
@@ -67,7 +104,7 @@ set title
 set noswapfile
 set nospell spelllang=en_gb,ru_yo
 set showmatch
-set autoindent shiftwidth=4 softtabstop=-1 expandtab
+set autoindent shiftwidth=4 softtabstop=-1 expandtab tabstop=4
 set smartindent
 set smarttab
 set backspace=indent,eol,start
@@ -120,7 +157,6 @@ set langmenu=en_US.UTF-8
 language messages en_US.UTF-8
 set splitbelow splitright
 
-set wildmenu wildoptions=pum,fuzzy pumheight=20
 set wildignore=*.o,*.obj,*.bak,*.exe,*.swp,tags,*.out
 set completeopt=menu,popup completepopup=highlight:Pmenu
 
@@ -147,63 +183,6 @@ set undodir=~/.vimUndoDir
 set undolevels=1000
 set undofile
 set viminfo='200,<500,s32
-
-" ============================================================================
-" COLORS & THEMES
-" ============================================================================
-
-augroup colorscheme_change | au!
-    au ColorScheme jellybeans hi Normal ctermbg=NONE guibg=NONE
-    au ColorScheme habamax hi Normal ctermbg=NONE guibg=NONE
-    au ColorScheme habamax hi Comment ctermfg=95 guifg=NONE
-    au ColorScheme habamax hi SpellBad cterm=underline ctermfg=124 ctermbg=NONE guifg=#af0000 gui=underline guibg=NONE
-    au ColorScheme sorbet hi Normal ctermbg=NONE guibg=NONE
-    au ColorScheme default hi Normal ctermbg=NONE guibg=NONE
-    au ColorScheme default hi LineNr ctermfg=8 guifg=gray
-    au ColorScheme default hi CursorLineNr cterm=NONE ctermfg=12
-    au ColorScheme default hi Special ctermfg=5
-    au ColorScheme default hi PreProc ctermfg=5
-augroup END
-
-function! EnableTermGuicolorsIfSupported()
-    if !has('termguicolors')
-        return
-    endif
-
-    if ($COLORTERM ==# 'truecolor' || $COLORTERM ==# '24bit') ||
-        \ ($TERM ==# 'xterm-kitty') ||
-        \ ($TERM_PROGRAM ==# 'WezTerm') ||
-        \ ($TERM_PROGRAM ==# 'vscode') ||
-        \ (exists('$VTE_VERSION') && $VTE_VERSION >= 3600)
-
-        if &term =~# '^screen' || &term =~# '^tmux'
-            let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-            let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-        endif
-
-        set termguicolors
-
-        return 1
-    endif
-
-    return 0
-endfunction
-
-call EnableTermGuicolorsIfSupported()
-
-function! AutoThemeByTime() abort
-  let hour = str2nr(strftime('%H'))
-  if hour >= 8 && hour < 16
-    colorscheme tokyonight-day
-  else
-    colorscheme jellybeans
-  endif
-endfunction
-
-augroup AutoTheme
-  autocmd!
-  autocmd VimEnter * call AutoThemeByTime()
-augroup END
 
 " ============================================================================
 " AUTOCOMMANDS & FORMATTING OPTIONS
