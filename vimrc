@@ -32,6 +32,8 @@ Plug 'sheerun/vim-polyglot'
 " Highlight trailing whitespace
 Plug 'ntpeters/vim-better-whitespace'
 
+Plug 'ojroques/vim-oscyank', {'branch': 'main'}
+
 call plug#end()
 
 " ============================================================================
