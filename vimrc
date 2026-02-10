@@ -159,6 +159,7 @@ set langmenu=en_US.UTF-8
 language messages en_US.UTF-8
 set splitbelow splitright
 
+set wildmenu wildoptions=pum,fuzzy pumheight=20
 set wildignore=*.o,*.obj,*.bak,*.exe,*.swp,tags,*.out
 set completeopt=menu,popup completepopup=highlight:Pmenu
 
