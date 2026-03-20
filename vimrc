@@ -11,8 +11,11 @@ endif
 " ---
 call plug#begin()
 
-" Lucius Theme
+" Themes
 Plug 'jonathanfilip/vim-lucius'
+Plug 'ogswag/vim-envy'
+Plug 'metalelf0/base16-black-metal-scheme'
+Plug 'larsbs/vimterial_dark'
 
 " Fuzzy search and file opening
 Plug 'ctrlpvim/ctrlp.vim'
@@ -39,38 +42,13 @@ call plug#end()
 " ============================================================================
 " COLORSCHEME
 " ============================================================================
-function! EnableTermGuicolorsIfSupported()
-    if !has('termguicolors')
-        return
-    endif
-
-    if ($COLORTERM ==# 'truecolor' || $COLORTERM ==# '24bit') ||
-        \ ($TERM ==# 'xterm-kitty') ||
-        \ ($TERM_PROGRAM ==# 'WezTerm') ||
-        \ ($TERM_PROGRAM ==# 'vscode') ||
-        \ (exists('$VTE_VERSION') && $VTE_VERSION >= 3600)
-
-        if &term =~# '^screen' || &term =~# '^tmux'
-            let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-            let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-        endif
-
-        set termguicolors
-
-        return 1
-    endif
-
-    return 0
-endfunction
-
-call EnableTermGuicolorsIfSupported()
-
+set termguicolors
 if strftime("%H") >= 6 && strftime("%H") < 18
   set background=light
-  colorscheme lucius
+  colorscheme envy-transparent
 else
   set background=dark
-  colorscheme lucius
+  colorscheme vimterial_dark
 endif
 
 " ============================================================================
