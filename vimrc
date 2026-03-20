@@ -16,6 +16,8 @@ Plug 'jonathanfilip/vim-lucius'
 Plug 'ogswag/vim-envy'
 Plug 'metalelf0/base16-black-metal-scheme'
 Plug 'larsbs/vimterial_dark'
+Plug 'jacoborus/tender.vim'
+Plug 'huyvohcmc/atlas.vim'
 
 " Fuzzy search and file opening
 Plug 'ctrlpvim/ctrlp.vim'
@@ -48,7 +50,7 @@ if strftime("%H") >= 6 && strftime("%H") < 18
   colorscheme envy-transparent
 else
   set background=dark
-  colorscheme vimterial_dark
+  colorscheme tender
 endif
 
 " ============================================================================
@@ -84,7 +86,7 @@ set title
 set noswapfile
 set nospell spelllang=en_gb,ru_yo
 set showmatch
-set autoindent shiftwidth=4 softtabstop=-1 expandtab tabstop=4
+set autoindent noexpandtab tabstop=4 shiftwidth=0 softtabstop=-1
 set smartindent
 set smarttab
 set backspace=indent,eol,start
