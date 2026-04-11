@@ -15,12 +15,8 @@ call plug#begin()
 Plug 'jonathanfilip/vim-lucius'
 Plug 'ogswag/vim-envy'
 Plug 'metalelf0/base16-black-metal-scheme'
-Plug 'larsbs/vimterial_dark'
 Plug 'jacoborus/tender.vim'
 Plug 'huyvohcmc/atlas.vim'
-
-" Fuzzy search and file opening
-Plug 'ctrlpvim/ctrlp.vim'
 
 " Commenting code
 Plug 'tpope/vim-commentary'
@@ -31,13 +27,12 @@ Plug 'christoomey/vim-titlecase'
 " Language packs for syntax highlighting
 Plug 'sheerun/vim-polyglot'
 
-" Sync themes with system style
-" Plug 'vimpostor/vim-lumen'
-
 " Highlight trailing whitespace
 Plug 'ntpeters/vim-better-whitespace'
 
 Plug 'ojroques/vim-oscyank', {'branch': 'main'}
+
+Plug 'justinmk/vim-sneak'
 
 call plug#end()
 
@@ -45,12 +40,12 @@ call plug#end()
 " COLORSCHEME
 " ============================================================================
 set termguicolors
-if strftime("%H") >= 6 && strftime("%H") < 18
+if strftime("%H") >= 6 && strftime("%H") < 19
   set background=light
   colorscheme envy-transparent
 else
   set background=dark
-  colorscheme tender
+  colorscheme catppuccin
 endif
 
 " ============================================================================
