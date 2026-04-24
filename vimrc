@@ -40,12 +40,20 @@ call plug#end()
 " COLORSCHEME
 " ============================================================================
 set termguicolors
+
+augroup MyThemeCustomizations
+  autocmd!
+  autocmd ColorScheme tender highlight Normal guifg=#eeeeee ctermfg=255 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+  autocmd ColorScheme habamax highlight Normal guibg=NONE ctermbg=NONE
+  autocmd ColorScheme jellybeans highlight Normal guibg=NONE ctermbg=NONE
+augroup END
+
 if strftime("%H") >= 6 && strftime("%H") < 19
   set background=light
-  colorscheme envy-transparent
+  colorscheme envy
 else
   set background=dark
-  colorscheme catppuccin
+  colorscheme tender
 endif
 
 " ============================================================================
