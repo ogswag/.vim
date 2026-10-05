@@ -12,11 +12,14 @@ endif
 call plug#begin()
 
 " Themes
+Plug 'nburns/vim-auto-light-dark'
 Plug 'jonathanfilip/vim-lucius'
 Plug 'ogswag/vim-envy'
 Plug 'metalelf0/base16-black-metal-scheme'
 Plug 'jacoborus/tender.vim'
 Plug 'huyvohcmc/atlas.vim'
+Plug 'lunacookies/vim-colors-xcode'
+Plug 'ThunderBoltCODMYT/gruber-darker.vim'
 
 " Commenting code
 Plug 'tpope/vim-commentary'
@@ -32,8 +35,6 @@ Plug 'ntpeters/vim-better-whitespace'
 
 Plug 'ojroques/vim-oscyank', {'branch': 'main'}
 
-Plug 'justinmk/vim-sneak'
-
 call plug#end()
 
 " ============================================================================
@@ -41,20 +42,30 @@ call plug#end()
 " ============================================================================
 set termguicolors
 
-augroup MyThemeCustomizations
-  autocmd!
-  autocmd ColorScheme tender highlight Normal guifg=#eeeeee ctermfg=255 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-  autocmd ColorScheme habamax highlight Normal guibg=NONE ctermbg=NONE
-  autocmd ColorScheme jellybeans highlight Normal guibg=NONE ctermbg=NONE
-augroup END
+" augroup MyThemeCustomizations
+"   autocmd!
+"   autocmd ColorScheme xcodedarkhc highlight Normal guibg=NONE ctermbg=NONE
+"   autocmd ColorScheme xcodedark highlight Normal guibg=NONE ctermbg=NONE
+"   autocmd ColorScheme xcodedarkhc highlight EndOfBuffer guibg=NONE
+"   autocmd ColorScheme xcodedark highlight EndOfBuffer guibg=NONE
+" augroup END
 
-if strftime("%H") >= 6 && strftime("%H") < 19
-  set background=light
-  colorscheme envy
-else
-  set background=dark
-  colorscheme tender
-endif
+" if strftime("%H") >= 6 && strftime("%H") < 20
+"   set background=light
+"   colorscheme envy-transparent
+" else
+"   set background=dark
+"   colorscheme xcodedark
+" endif
+function DarkMode()
+    colorscheme xcodedark
+    set background=dark
+endfunction
+
+function LightMode()
+    set background=light
+    colorscheme envy
+endfunction
 
 " ============================================================================
 " GENERAL SETTINGS & BEHAVIOR
